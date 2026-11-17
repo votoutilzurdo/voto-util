@@ -204,3 +204,4 @@ code { font-family: var(--f-datos); font-size: .92em; }
 .logo-texto b { font: 800 1.6rem/1 var(--f-titulo); letter-spacing: -0.01em; color: var(--tinta); }
 .logo-texto b em { font-style: normal; color: var(--acento); }
 .logo-texto small { font: 600 11px/1 var(--f-datos); letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-suave); }
+.entradilla.llamada { color: var(--tinta); }
