@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cómo se calcula el voto útil</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<main class="envoltura">
+  <div class="marca">
+    <a class="logo" href="index.html" aria-label="Voto útil, inicio"><svg class="logo-puno" viewBox="-10 -12 220 254" aria-hidden="true"><g stroke="var(--tinta)" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"> <rect x="30" y="14" width="124" height="86" rx="9" fill="var(--papeleta)"/> <path d="M33 20 L92 62 L151 20" fill="none"/> <path d="M72 168 L66 236 L136 236 L130 168 Z" fill="var(--papeleta)"/> <rect x="50" y="80" width="27" height="52" rx="12" fill="var(--papeleta)"/> <rect x="76" y="76" width="27" height="56" rx="12" fill="var(--papeleta)"/> <rect x="102" y="76" width="27" height="56" rx="12" fill="var(--papeleta)"/> <rect x="128" y="82" width="25" height="50" rx="12" fill="var(--papeleta)"/> <path d="M52 118 L52 150 Q52 178 82 178 L124 178 Q152 178 152 150 L152 118 Z" fill="var(--papeleta)"/> <path d="M50 124 Q50 112 64 112 L112 112 Q124 112 124 124 Q124 136 112 136 L72 136 Q60 136 56 146" fill="var(--papeleta)"/> </g> <circle cx="156" cy="26" r="25" fill="var(--ok)" stroke="var(--papeleta)" stroke-width="6"/> <path d="M144 27 L153 36 L169 19" fill="none" stroke="var(--papeleta)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/> <metadata></metadata></svg><span class="logo-texto"><b>Voto <em>útil</em></b><small>Generales 29-N</small></span></a>
+    <a href="index.html">Buscar mi provincia</a>
+  </div>
+
+  <header style="display:grid;gap:12px">
+    <h1>Cómo se calcula</h1>
+    <p class="entradilla">La web no adivina el resultado. Mide en qué lista de izquierdas un voto tiene más probabilidades de decidir un escaño en tu provincia, teniendo en cuenta que las encuestas fallan.</p>
+  </header>
+
+  <article class="texto">
+    <h2>Por qué se pierden votos de izquierdas</h2>
+    <p>El Congreso tiene 350 escaños repartidos en 52 circunscripciones: las 50 provincias, Ceuta y Melilla. Cada provincia reparte sus escaños por separado con el sistema D'Hondt, y solo entran en el reparto las listas que superan el 3 % de los votos válidos de esa provincia.</p>
+    <p>En una provincia de 3, 4 o 5 escaños, una lista que saca un 6 % o un 8 % suele quedarse sin nada. Esos votos no cuentan para el resultado. Si se hubieran sumado a otra lista de izquierdas con opciones, a veces habrían dado un escaño más.</p>
+
+    <h2>Un ejemplo con D'Hondt</h2>
+    <p>Provincia inventada con 5 escaños. Se dividen los votos de cada lista entre 1, 2, 3… y los 5 cocientes más altos se llevan un escaño cada uno (en rojo).</p>
+    <div class="ejemplo">
+      <table>
+        <thead><tr><th>Lista</th><th>Votos</th><th>÷1</th><th>÷2</th><th>÷3</th><th>Escaños</th></tr></thead>
+        <tbody>
+          <tr><td>Derecha A</td><td>40.000</td><td class="gana">40.000</td><td class="gana">20.000</td><td class="gana">13.333</td><td>3</td></tr>
+          <tr><td>Derecha B</td><td>22.000</td><td class="gana">22.000</td><td>11.000</td><td>7.333</td><td>1</td></tr>
+          <tr><td>Izquierda C</td><td>25.000</td><td class="gana">25.000</td><td>12.500</td><td>8.333</td><td>1</td></tr>
+          <tr><td>Izquierda D</td><td>9.000</td><td>9.000</td><td>4.500</td><td>3.000</td><td>0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>La izquierda suma 34.000 votos y saca 1 escaño. Si los 9.000 votantes de D hubieran votado a C, C tendría 34.000: sus cocientes serían 34.000 y 17.000, y el segundo le quitaría el tercer escaño a la Derecha A (13.333). La izquierda pasaría de 1 a 2 escaños con los mismos votos.</p>
+    <p>Lo contrario también pasa: a veces la lista grande ya tiene su último escaño asegurado y la pequeña está justo en el límite. Entonces el voto útil es la lista pequeña. Por eso el cálculo se hace provincia a provincia.</p>
+
+    <h2>Paso 1: de qué datos parte</h2>
+    <ul>
+      <li><b>Resultados oficiales del 23 de julio de 2023</b> en cada provincia (Ministerio del Interior). Sirven para saber dónde es fuerte cada partido.</li>
+      <li><b>La media de encuestas nacionales</b> para el 29-N (Demócrata, 17 institutos). Dice cuánto ha subido o bajado cada partido desde 2023. La fecha y la fuente aparecen al pie de la página principal.</li>
+      <li><b>Escaños por provincia de 2026</b>: los mismos que en 2023 salvo Madrid, que pasa a 38, y Cádiz, que baja a 8.</li>
+    </ul>
+
+    <h2>Paso 2: de 2023 a las listas del 29-N</h2>
+    <p>Las listas de la izquierda han cambiado desde 2023, así que se hacen estas equivalencias:</p>
+    <ul>
+      <li><b>Frente Amplio</b> hereda el voto de Sumar de 2023. En Canarias su lista incluye a Nueva Canarias y Podemos, y en Baleares va como Ara Més–Frente Amplio.</li>
+      <li><b>Compromís–Front Valencià</b> hereda el voto de Sumar en la Comunitat Valenciana (incluye a Podem y EUPV).</li>
+      <li><b>Podemos</b> se presenta solo en el resto de España. Como en 2023 iba dentro de Sumar, se le asigna una parte de ese voto con la misma distribución provincial, y la encuesta fija su nivel. En Cataluña va con ERC.</li>
+      <li><b>Adelante Andalucía</b> se reparte entre las provincias andaluzas según su resultado en las autonómicas de mayo de 2026.</li>
+      <li>Por la derecha, UPN va con el PP en Navarra, y SALF, que no se presentó en 2023, se reparte por igual en todas las provincias.</li>
+    </ul>
+    <p>Después, cada partido se escala igual en todas las provincias hasta que su suma nacional coincide con la media de encuestas (ajuste proporcional). Así cada partido conserva su mapa de fuerza de 2023 pero con el nivel de hoy. Con esto, el reparto nacional que sale es muy parecido al de la media de Demócrata.</p>
+
+    <h2>Paso 3: miles de escenarios</h2>
+    <p>Las encuestas se equivocan, y una provincia puede comportarse distinto que el resto. Por eso no se usa un único resultado: se simulan 4.000 escenarios por provincia. En cada uno, el voto de cada partido se mueve al azar con dos errores:</p>
+    <ul>
+      <li>un error nacional (cerca de un 10 %, común a todas las provincias), como cuando todas las encuestas fallan en la misma dirección;</li>
+      <li>un error provincial (cerca de un 14 %), porque cada provincia tiene su propia dinámica.</li>
+    </ul>
+    <p>En cada escenario se aplica la ley electoral tal cual: D'Hondt, barrera del 3 % y, en Ceuta y Melilla, escaño para la lista más votada.</p>
+
+    <h2>Paso 4: qué lista es el voto más útil</h2>
+    <p>En cada escenario se prueba a darle un empujón del 1 % de los votos de la provincia a cada lista de izquierdas, de una en una, y se mira si la izquierda en conjunto gana un escaño más. Si el escaño se lo quita a otra lista de izquierdas, no cuenta como ganancia.</p>
+    <p>Esto favorece a veces a una lista pequeña que busca su primer escaño frente a una grande que busca el quinto. Con D'Hondt, 1.000 votos más suben el primer cociente de una lista 1.000 votos, pero su quinto cociente solo 200. Por eso el primer escaño de una lista se mueve más fácilmente con pocos votos.</p>
+    <p>El voto más útil es la lista con la que eso ocurre en más escenarios. Si hay dos o tres listas con opciones parecidas, la web las muestra todas por igual.</p>
+
+    <h2>Paso 5: votos que faltan y nivel de confianza</h2>
+    <p>Para cada lista, la web calcula con la media de encuestas cuántos votantes más necesitaría para ganar su siguiente escaño y a quién se lo quitaría. Solo suma a la izquierda si se lo quita a una lista de derechas. Si una lista tiene su último escaño en el aire, la web dice cuántos votantes menos bastarían para que lo perdiera. Los votos se calculan con la participación de 2023, así que son una aproximación.</p>
+    <p>El nivel de confianza resume lo probable que es que esos votos acaben de verdad en un diputado más para la izquierda cuando se tienen en cuenta los errores de las encuestas:</p>
+    <ul>
+      <li><b>Alto</b> (verde): un empujón a esa lista da un escaño más a la izquierda en al menos 12 de cada 100 escenarios.</li>
+      <li><b>Medio</b> (amarillo): entre 5 y 12 de cada 100.</li>
+      <li><b>Bajo</b> (rojo): menos de 5 de cada 100. Ese voto casi nunca cambia el número de diputados de izquierdas, porque la lista está muy lejos de su escaño o ya lo tiene asegurado con margen.</li>
+    </ul>
+    <p>Un 12 % puede parecer poco, pero un empujón del 1 % es pequeño. Lo que importa es la comparación entre listas de la misma provincia.</p>
+
+    <h2>Qué cuenta como izquierda</h2>
+    <p>Siempre: PSOE, Frente Amplio y sus listas aliadas, Compromís–Front Valencià, Podemos y Adelante Andalucía. También ERC (con Podem), EH Bildu y BNG en las provincias donde se presentan. No se cuentan PNV, Junts ni Coalición Canaria.</p>
+
+    <h2>Límites</h2>
+    <ul>
+      <li>No hay encuestas fiables para cada provincia, así que el modelo supone que los cambios desde 2023 se reparten de forma parecida en todo el país. En provincias con dinámicas locales fuertes puede fallar.</li>
+      <li>Los votos que faltan para un escaño se calculan con la participación de 2023 y son aproximados.</li>
+      <li>Los partidos pequeños que no salen en las encuestas se agrupan en «otros». Las candidaturas locales con opciones en 2023 (Teruel Existe, Soria ¡Ya!, UPL, Por Ávila) conservan su porcentaje de 2023.</li>
+      <li>Tu voto también expresa preferencias, no solo escaños. Esta web solo mide lo segundo.</li>
+    </ul>
+
+    <h2>Código y datos</h2>
+    <p>Todo el cálculo se hace en tu navegador. Los datos están en dos ficheros: <code>datos/base2023.js</code> (resultados oficiales de 2023, ya agrupados) y <code>datos/encuestas.js</code> (media de encuestas y parámetros, que se actualiza a mano).</p>
+  </article>
+
+  <footer>
+    <p><a href="index.html">Volver a buscar mi provincia</a></p>
+  </footer>
+</main>
+<script src="js/contador.js"></script>
+</body>
+</html>

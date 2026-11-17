@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Voto útil de izquierdas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Escribe tu provincia y descubre qué candidatura de izquierdas convierte mejor tu voto en escaños el 29 de noviembre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<main class="envoltura">
+  <div class="marca">
+    <a class="logo" href="index.html" aria-label="Voto útil, inicio"><svg class="logo-puno" viewBox="-10 -12 220 254" aria-hidden="true"><g stroke="var(--tinta)" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"> <rect x="30" y="14" width="124" height="86" rx="9" fill="var(--papeleta)"/> <path d="M33 20 L92 62 L151 20" fill="none"/> <path d="M72 168 L66 236 L136 236 L130 168 Z" fill="var(--papeleta)"/> <rect x="50" y="80" width="27" height="52" rx="12" fill="var(--papeleta)"/> <rect x="76" y="76" width="27" height="56" rx="12" fill="var(--papeleta)"/> <rect x="102" y="76" width="27" height="56" rx="12" fill="var(--papeleta)"/> <rect x="128" y="82" width="25" height="50" rx="12" fill="var(--papeleta)"/> <path d="M52 118 L52 150 Q52 178 82 178 L124 178 Q152 178 152 150 L152 118 Z" fill="var(--papeleta)"/> <path d="M50 124 Q50 112 64 112 L112 112 Q124 112 124 124 Q124 136 112 136 L72 136 Q60 136 56 146" fill="var(--papeleta)"/> </g> <circle cx="156" cy="26" r="25" fill="var(--ok)" stroke="var(--papeleta)" stroke-width="6"/> <path d="M144 27 L153 36 L169 19" fill="none" stroke="var(--papeleta)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/> <metadata></metadata></svg><span class="logo-texto"><b>Voto <em>útil</em></b><small>Generales 29-N</small></span></a>
+    <a href="como-se-calcula.html">Cómo se calcula</a>
+  </div>
+
+  <header style="display:grid;gap:12px">
+    <h1>Haz que tu voto cuente</h1>
+    <p class="entradilla">Al Congreso se vota por provincias y cada una reparte pocos escaños. Un voto a una lista que no llega a escaño no cuenta para nada. Escribe tu provincia y te decimos qué candidatura de izquierdas tiene más opciones de convertir tu voto en un diputado más.</p>
+  </header>
+
+  <form class="buscador" id="buscador" autocomplete="off">
+    <label for="provincia">¿En qué provincia votas?</label>
+    <div class="campo">
+      <input id="provincia" name="provincia" type="text" placeholder="Por ejemplo: Sevilla, Asturias, Tenerife…" role="combobox" aria-expanded="false" aria-controls="sugerencias" aria-autocomplete="list">
+      <ul class="sugerencias" id="sugerencias" role="listbox" hidden></ul>
+    </div>
+    <p class="error" id="error" hidden></p>
+  </form>
+
+  <section id="resultado" aria-live="polite"></section>
+
+  <div class="aviso">
+    <p><strong>Esto es una estimación, no una predicción.</strong> Parte de los resultados oficiales de 2023 y de la media de encuestas nacionales, y simula miles de escenarios porque las encuestas se equivocan. Nadie sabe cuántos votos tendrá cada lista en tu provincia.</p>
+    <p>No es una recomendación de ningún partido. Solo mide en qué lista tiene más probabilidades un voto de izquierdas de decidir un escaño. <a href="como-se-calcula.html">Ver el método</a>.</p>
+  </div>
+
+  <footer id="pie"></footer>
+</main>
+
+<script src="datos/base2023.js"></script>
+<script src="datos/encuestas.js"></script>
+<script src="js/modelo.js"></script>
+<script src="js/app.js"></script>
+<script src="js/contador.js"></script>
+</body>
+</html>
