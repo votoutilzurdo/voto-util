@@ -94,7 +94,6 @@
     input.blur();
     mostrar(prov);
     try { history.replaceState(null, "", "#" + slug(prov)); } catch (e) { /* sin historial */ }
-    try { localStorage.setItem("voto-util-provincia", prov.ine); } catch (e) { /* sin almacenamiento */ }
   }
 
   // ---------- Resultado ----------
@@ -216,10 +215,8 @@
   let inicial = null;
   const h = decodeURIComponent((location.hash || "").slice(1));
   if (h) inicial = provincias.find((p) => slug(p) === h || p.ine === h);
-  if (!inicial) { try { const g = localStorage.getItem("voto-util-provincia"); inicial = provincias.find((p) => p.ine === g); } catch (e) { /* nada */ } }
-  if (!inicial) inicial = provincias.find((p) => p.ine === "28"); // Madrid como ejemplo
-  input.value = inicial.nombre;
-  mostrar(inicial);
+  // Sin provincia en la dirección (#sevilla, #madrid...), la página empieza en blanco
+  if (inicial) { input.value = inicial.nombre; mostrar(inicial); }
   window.addEventListener("hashchange", () => {
     const p = provincias.find((x) => slug(x) === decodeURIComponent(location.hash.slice(1)));
     if (p) { input.value = p.nombre; mostrar(p); }
